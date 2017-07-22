@@ -1,22 +1,39 @@
-var db = require('../db')();
+var db = require('../db');
+console.log();
 
 module.exports = {
   messages: {
-    // a function which produces all the messages
-    get: function (request, response) {
-      // SELECT * FROM messages;
-      response.end();
+    get: function () {
+      db.query('SELECT message FROM messages', (err, rows, fields) => {
+        if (err) { console.log(err); }
+        console.log('model received GET:' + rows[0]);
+        // callback(null, rows);
+      });
     }, 
-    // a function which can be used to insert a message into the database
     post: function () {
-      // INSERT INTO messages
+      db.query('INSERT INTO messages (message) VALUES (\'hi\')', (err, result, fields) => {
+        if (err) { console.log(err); }
+        // callback(null, 'success');
+        console.log('model received POST: ' + result);
+      });
     }
   },
 
   users: {
-    // Ditto as above.
-    get: function () {},
-    post: function () {}
+    get: function () {
+      // db.connect(console.log('connected via users GET function'));
+      // db.query('SELECT name FROM users', (err, result, fields) => {
+      //   if (err) { callback(err, null); }
+      //   callback(null, result);
+      // });
+    }, 
+    post: function () {
+      // db.connect(console.log('connected via messages GET function'));
+      // db.query('INSERT INTO users (name) VALUES (?)', message.username, (err, result, fields) => {
+      //   if (err) { callback(err, null); }
+      //   callback(null, 'success');
+      // });
+    }
   }
 };
 

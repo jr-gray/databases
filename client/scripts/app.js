@@ -46,11 +46,11 @@ var app = {
       success: function (data) {
         console.log('fucckkkkkk yeaaaahhhh message sent')
 
-        // // Clear messages input
-        // app.$message.val('');
+        // Clear messages input
+        app.$message.val('');
 
-        // // Trigger a fetch to update the messages, pass true to animate
-        // app.fetch();
+        // Trigger a fetch to update the messages, pass true to animate
+        app.fetch();
       },
       error: function (error) {
         console.error('chatterbox: Failed to send message', error);
